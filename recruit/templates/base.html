@@ -1,0 +1,88 @@
+{% extends 'bootstrap.html' %}
+{% load static %}
+{% block bootstrap4_extra_head %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap&subset=korean" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
+    <style>
+        body {font-family: 'NanumSquare';}
+        @import url('https://fonts.googleapis.com/css?family=Raleway:900&display=swap');
+        @media (max-width: 600px){
+            li a{
+                font-size: 22px !important;
+            }
+            .phone_padding{
+                padding-left: 0 !important;
+            }
+        }
+    </style>
+    {% block base_extra_head %}
+    {% endblock %}
+{% endblock %}
+
+{% block bootstrap4_before_content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand pt-2" href="{% url 'main' %}" style="font-family: 'Raleway', sans-serif; font-size: 30px; font-weight: 800; margin-left: 15px;">LIKE<span style="color: #f09837;">LION</span> </a>
+        <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse w-100 order-2 dual-collapse2" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link ml-3 mr-0" href="{% url 'guide' %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">활동 안내</a>
+                </li>
+                <li class="nav-item mr-2">
+                    <a class="nav-link mx-3" href="{% url 'faq' %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">FAQ</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item border-left pl-2 phone_padding">
+                    <a class="nav-link mx-3 h-100" href="{% url 'profile_update' request.user.profile.id %}" style="font-size: 20px; font-weight: bold; line-height: 37px;">회원정보 수정하기</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+{% endblock %}
+{% block bootstrap4_content %}
+    <div style="min-height: 70vh;">
+        {% if messages %}
+            <style>
+                .alert-error {
+                    background-image: -webkit-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+                    background-image: -o-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+                    background-image: -webkit-gradient(linear, left top, left bottom, from(#f2dede), to(#e7c3c3));
+                    background-image: linear-gradient(to bottom, #f2dede 0%, #e7c3c3 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffe7c3c3', GradientType=0);
+                    background-repeat: repeat-x;
+                    border-color: #dca7a7;
+                }
+            </style>
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block bootstrap4_after_content %}
+    <div class="footer text-center" style="color:white;">
+        Copyright @ 2020 Likelion Sogang All rights Reserved
+    </div>
+    <br>
+{% endblock %}
+
+{% block bootstrap4_extra_script %}
+    <script src="https://kit.fontawesome.com/b18b3d95c2.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
+    {% block base_extra_script %}
+    {% endblock %}
+{% endblock %}
