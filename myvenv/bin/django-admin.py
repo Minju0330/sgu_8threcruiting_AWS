@@ -1,4 +1,4 @@
-#!/Users/minjulee/Desktop/AWS/myvenv/bin/python
+#!/Users/minjulee/Desktop/AWS04/myvenv/bin/python
 from django.core import management
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-#!/Users/minjulee/Desktop/AWS/myvenv/bin/python
+#!/Users/minjulee/Desktop/AWS04/myvenv/bin/python
 
 # $Id: rst2pseudoxml.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>
